@@ -6,9 +6,7 @@ import org.springframework.validation.Validator;
 
 import it.uniroma3.siw.spring.furgoni.model.User;
 
-/**
- * Validator for User
- */
+
 @Component
 public class UserValidator implements Validator {
 
