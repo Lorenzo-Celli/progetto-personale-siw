@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Rifornimento {
@@ -15,14 +16,24 @@ public class Rifornimento {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	private Date data;
+	private String data;
 	
 	private Double importo;
 	
-	private Double km;
-	
 	@ManyToOne
 	private Furgone furgone;
+	
+	@OneToOne
+	private Rotta rotta;
+	
+
+	public Rotta getRotta() {
+		return rotta;
+	}
+
+	public void setRotta(Rotta rotta) {
+		this.rotta = rotta;
+	}
 
 	public Long getId() {
 		return id;
@@ -32,11 +43,11 @@ public class Rifornimento {
 		this.id = id;
 	}
 
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 
@@ -48,13 +59,6 @@ public class Rifornimento {
 		this.importo = importo;
 	}
 
-	public Double getKm() {
-		return km;
-	}
-
-	public void setKm(Double km) {
-		this.km = km;
-	}
 
 	public Furgone getFurgone() {
 		return furgone;

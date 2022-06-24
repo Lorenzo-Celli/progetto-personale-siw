@@ -2,11 +2,13 @@ package it.uniroma3.siw.spring.furgoni.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Rotta {
@@ -14,17 +16,25 @@ public class Rotta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+		
+	private String data;
 	
-	private String codice;
-	
-	private Date data;
-	
+
 	private Double kmIniziali;
 	
 	private Double kmFinali;
-	
-	@ManyToOne
+
+	/**
+	 * il cascade lho messo sennò quando lo rendo persistente i dice che prima devo salvare un furgone,
+	 * ma se salvo prima il furgone mi da lo stesso problema al contrario,
+	 * essendo il primo ho messo il cascade così in automatico non mi da prblemi per testare
+	 */
+	@ManyToOne(cascade = CascadeType.PERSIST) 
 	private Furgone furgone;
+	
+	// Stesso ragionamento
+	@OneToOne(cascade = CascadeType.PERSIST)
+	private Rifornimento rifornimento;
 	
 	@ManyToOne
 	private User user;
@@ -37,19 +47,12 @@ public class Rotta {
 		this.id = id;
 	}
 
-	public String getCodice() {
-		return codice;
-	}
 
-	public void setCodice(String codice) {
-		this.codice = codice;
-	}
-
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 
@@ -77,6 +80,20 @@ public class Rotta {
 		this.furgone = furgone;
 	}
 	
+	public User getUser() {
+		return user;
+	}
+	public Rifornimento getRifornimento() {
+		return rifornimento;
+	}
+
+	public void setRifornimento(Rifornimento rifornimento) {
+		this.rifornimento = rifornimento;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
 	
 }

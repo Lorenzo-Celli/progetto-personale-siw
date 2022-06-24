@@ -1,0 +1,18 @@
+.tabella-rotte-correnti{
+    margin-top: 20px;
+    width: 1000px;
+    position: relative;
+    left: 20%;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-bottom: 50px;
+}
+
+.tabella-rotte-concluse{
+    margin-top: 50px;
+    width: 1000px;
+    position: relative;
+    left: 20%;
+    border: 1px solid black;
+    border-radius: 5px;
+}

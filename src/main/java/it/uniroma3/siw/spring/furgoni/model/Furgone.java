@@ -1,5 +1,6 @@
 package it.uniroma3.siw.spring.furgoni.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -27,7 +28,12 @@ public class Furgone {
 	@OneToMany
 	@JoinColumn(name = "furgone_id")
 	private List<Rifornimento> rifornimenti;
-
+	
+	public Furgone () {
+		this.rotte = new ArrayList<>();
+		this.rifornimenti = new ArrayList<>();
+	}
+	
 	public Long getId() {
 		return id;
 	}

@@ -1,5 +1,6 @@
 package it.uniroma3.siw.spring.furgoni.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -30,6 +31,26 @@ public class User {
 	@OneToOne
 	private Credentials credenziali;
 	
+	public User () {
+		this.rotte = new ArrayList<>();
+	}
+	
+	public List<Rotta> getRotte() {
+		return rotte;
+	}
+
+	public void setRotte(List<Rotta> rotte) {
+		this.rotte = rotte;
+	}
+
+	public Credentials getCredenziali() {
+		return credenziali;
+	}
+
+	public void setCredenziali(Credentials credenziali) {
+		this.credenziali = credenziali;
+	}
+
 	public Long getId() {
 		return id;
 	}
