@@ -31,7 +31,7 @@ public class RottaController {
 	
 	@GetMapping("/rotte")
 	public String getRotte(Model model) {
-		
+		/*
 		User d = this.uR.findById((long) 2).get();
 		
 		Rotta rA = new Rotta();
@@ -78,6 +78,8 @@ public class RottaController {
 		rConclusa.setRifornimento(rif2);
 		
 		rR.save(rConclusa);
+		
+		*/
 		
 
 		List<Rotta> rotteCorrenti = new ArrayList<>();
