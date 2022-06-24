@@ -19,7 +19,6 @@ public class Rotta {
 		
 	private String data;
 	
-
 	private Double kmIniziali;
 	
 	private Double kmFinali;

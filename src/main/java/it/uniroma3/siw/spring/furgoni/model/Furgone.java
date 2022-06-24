@@ -50,6 +50,14 @@ public class Furgone {
 		this.targa = targa;
 	}
 
+	public List<Rifornimento> getRifornimenti() {
+		return rifornimenti;
+	}
+
+	public void setRifornimenti(List<Rifornimento> rifornimenti) {
+		this.rifornimenti = rifornimenti;
+	}
+
 	public Double getKmAttuali() {
 		return kmAttuali;
 	}

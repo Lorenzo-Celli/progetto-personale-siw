@@ -19,14 +19,14 @@
           <tr>
             <th scope="col">Numero rotta</th>
             <th scope="col">Driver assegnato</th>
-            <th scope="col">Furgone</th>
+            <th scope="col">Targa furgone</th>
           </tr>
         </thead>
         <tbody>
           <tr th:each="rotta: ${rotteCorrenti}">
             <th scope="row" th:text="${rotta.id}">1</th>
             <td th:text="${rotta.user.nome} +' ' +${rotta.user.cognome}">Mark</td>
-            <td  th:text="${rotta.furgone.targa}">Otto</td>
+            <td><a th:text="${rotta.furgone.targa}" th:href="@{dettaglioFurgone/{idF}(idF=${rotta.furgone.id})}"></a></td>
           </tr>
         </tbody>
       </table>
@@ -41,7 +41,7 @@
                 <th scope="col">Numero rotta</th>
                 <th scope="col">Data</th>
                 <th scope="col">Driver</th>
-                <th scope="col">Furgone</th>
+                <th scope="col">Targa furgone</th>
                 <th scope="col">Cod rifornimento</th>
               </tr>
             </thead>
@@ -50,7 +50,7 @@
                 <th scope="row" th:text="${rotta.id}">1</th>
                 <td th:text="${rotta.data}">Mark</td>
                 <td th:text="${rotta.user.nome} +' ' +${rotta.user.cognome}">Otto</td>
-                <td th:text="${rotta.furgone.targa}">Otto</td>
+                <td> <a th:text="${rotta.furgone.targa}" th:href="@{dettaglioFurgone/{idF}(idF=${rotta.furgone.id})}"></a></td>
                 <td th:if="${rotta.rifornimento}" th:text="${rotta.rifornimento.id}">Otto</td>
               </tr>
             </tbody>

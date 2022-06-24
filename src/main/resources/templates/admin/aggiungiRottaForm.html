@@ -1,0 +1,105 @@
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Inserisci rotta</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+	crossorigin="anonymous">
+    </script>
+
+<link rel="stylesheet" href="css/aggiungiRottaFormStyle.css">
+</head>
+
+<body>
+
+	<div class="container-fluid px-1 py-5 mx-auto">
+		<div class="row d-flex justify-content-center">
+			<div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+				<div class="card">
+					<h3 class="text-center mb-4">Inserisci la rotta giornaliera</h3>
+					<form class="form-card" th:action="@{/aggiungiRotta}" method="POST"
+						th:object="${rotta}">
+						<div class="row justify-content-between text-left ">
+							<div class="form-group col-sm-6 flex-column d-flex data">
+								<label class="form-control-label px-3 data-label">Data<span
+									class="text-danger"> *</span></label> <input type="text"
+									th:field="*{data}" id="fname" name="fname"
+									placeholder="Inserisci data rotta" onblur="validate(1)">
+							</div>
+							<div class="form-group col-sm-6 flex-column d-flex">
+								<label class="form-control-label px-3 rotta-label">Numero
+									rotta<span class="text-danger"> *</span>
+								</label> <input disabled type="text" id="lname" name="lname"
+									placeholder="Verrà generato automaticamente"
+									onblur="validate(2)">
+							</div>
+						</div>
+						<div class="row justify-content-between text-left">
+							<div class="form-group col-sm-6 flex-column d-flex driver"
+								>
+								<label class="form-control-label px-3 driver-label">Seleziona
+									il driver per la rotta<span class="text-danger"> *</span>
+								</label> <select th:field="*{user.id}" class="form-select"
+									aria-label="Default select example">
+									<option th:each="d : ${drivers}" th:value="${d.id}"
+										th:text="${d.nome} +' ' +${d.cognome}"></option>
+								</select>
+							</div>
+						</div>
+						<div class="row justify-content-between text-left">
+							<div class="form-group col-sm-6 flex-column d-flex targaVan"
+								>
+								<label class="form-control-label px-3 targaVan-label">Seleziona
+									la targa del van<span class="text-danger"> *</span>
+								</label> <select th:field="*{furgone.id}" class="form-select"
+									aria-label="Default select example">
+									<option th:each="f : ${furgoni}" th:value="${f.id}"
+										th:text="${f.targa}"></option>
+								</select>
+							</div>
+							<div class="form-group col-sm-6 flex-column d-flex kmIniziali">
+								<label class="form-control-label px-3 KmIniziali-label">Km
+									iniziali<span class="text-danger"> *</span>
+								</label> <input th:field="*{kmIniziali}" type="text" id="fname"
+									name="fname" placeholder="Inserisci km iniziali"
+									onblur="validate(1)">
+							</div>
+						</div>
+						<div class="row justify-content-between text-left inserisciUtente">
+							<div class="titolo-sez-utente">QUESTI DATI VERRANNO
+								INSERITI DALL'UTENTE</div>
+							<div class="form-group col-12 flex-column d-flex kmFinali">
+								<label class="form-control-label px-3 kmFinali-label">Km
+									finali<span class="text-danger"> </span>
+								</label> <input disabled type="text" id="ans" name="ans"
+									placeholder="inserimento utente"
+									onblur="validate(6)">
+							</div>
+							<div class="form-group col-12 flex-column d-flex rifornimento">
+								<label class="form-control-label px-3 rifornimento-label">Rifornimento
+									€<span class="text-danger"> </span>
+								</label> <input disabled type="text" id="ans" name="ans"
+									placeholder="inserimento utente"
+									onblur="validate(6)">
+							</div>
+						</div>
+						<div class="row justify-content-end bottone-conferma">
+							<div class="form-group col-sm-6 ">
+								<button type="submit" class="btn btn-success">Crea la
+									rotta</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

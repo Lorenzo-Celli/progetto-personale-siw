@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.spring.furgoni.model.Furgone;
 import it.uniroma3.siw.spring.furgoni.model.Rifornimento;
@@ -16,7 +18,9 @@ import it.uniroma3.siw.spring.furgoni.repository.FurgoneRepository;
 import it.uniroma3.siw.spring.furgoni.repository.RifornimentoRepository;
 import it.uniroma3.siw.spring.furgoni.repository.RottaRepository;
 import it.uniroma3.siw.spring.furgoni.repository.UserRepository;
+import it.uniroma3.siw.spring.furgoni.service.FurgoneService;
 import it.uniroma3.siw.spring.furgoni.service.RottaService;
+import it.uniroma3.siw.spring.furgoni.service.UserService;
 
 @Controller
 public class RottaController {
@@ -29,9 +33,18 @@ public class RottaController {
 	@Autowired
 	RottaService rottaService;
 	
+	@Autowired
+	UserService userService;
+	
+	@Autowired
+	FurgoneService furgoneService;
+	
+	
+	//da mettere "admin" nel apth
 	@GetMapping("/rotte")
 	public String getRotte(Model model) {
 		/*
+		 * CREO UN PO DI ROTTE, FURGONI, RIFORNIMENTI,ECC. PER PROVA
 		User d = this.uR.findById((long) 2).get();
 		
 		Rotta rA = new Rotta();
@@ -39,8 +52,6 @@ public class RottaController {
 		rA.setUser(d);
 		
 		d.getRotte().add(rA);
-		
-		
 		
 		
 		Furgone f = new Furgone();
@@ -81,16 +92,40 @@ public class RottaController {
 		
 		*/
 		
-
+		/*
+		Furgone f = new Furgone();
+		f.setTarga("EW 012GH");
+		f.setKmAttuali(189220.45);
+		
+		Rifornimento rif = new Rifornimento();
+		rif.setData("15/08/1995");
+		rif.setFurgone(f);
+		rif.setImporto(35.00);
+	
+		
+		Rotta r = new Rotta();
+		r.setData("15/08/1995");
+		r.setFurgone(f);
+		r.setKmFinali(170170.00);
+		r.setKmIniziali(160160.00);
+		r.setRifornimento(rif);
+		r.setUser(this.uR.findById((long) 2).get());
+		
+		rif.setRotta(r);
+		
+		rR.save(r);
+		*/
+		
+		
 		List<Rotta> rotteCorrenti = new ArrayList<>();
 		
 		List<Rotta> rotteConcluse = new ArrayList<>();
 		
-		for (Rotta r : rottaService.findAll()) {
-			if (r.getKmFinali() == null ) {
-				rotteCorrenti.add(r);
+		for (Rotta rtt : rottaService.findAll()) {
+			if (rtt.getKmFinali() == null ) {
+				rotteCorrenti.add(rtt);
 			} else {
-				rotteConcluse.add(r);
+				rotteConcluse.add(rtt);
 			}
 		}
 		
@@ -102,4 +137,37 @@ public class RottaController {
 		return "admin/rotteAdmin";
 	}
 
+	//da mettere "admin" nel apth
+	@GetMapping("aggiungiRotta")
+	public String aggiungiRotta (Model model) {
+		
+		model.addAttribute("drivers", this.userService.getAllUsers());
+		
+		model.addAttribute("furgoni", this.furgoneService.findAll());
+		
+		model.addAttribute("rotta", new Rotta());
+		
+		return "admin/aggiungiRottaForm";
+	}
+	
+	@PostMapping("aggiungiRotta")
+	public String aggiungiRottaPOST (@ModelAttribute("rotta") Rotta rotta) {
+
+		User driver = this.userService.getUser(rotta.getUser().getId());
+		
+		Furgone furgone = this.furgoneService.findById(rotta.getFurgone().getId());
+		
+		Rotta rottaDaSalvare = new Rotta();
+		
+		rottaDaSalvare.setData(rotta.getData());
+		rottaDaSalvare.setFurgone(furgone);
+		rottaDaSalvare.setKmIniziali(furgone.getKmAttuali());
+		rottaDaSalvare.setUser(driver);
+		
+		rottaService.save(rottaDaSalvare);
+		
+		return "redirect:/rotte";
+	}
+	
+	
 }

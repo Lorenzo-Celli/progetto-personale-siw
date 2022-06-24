@@ -1,0 +1,63 @@
+.container-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    left: 20%;
+    padding: 10px;
+    padding-bottom: 50px;
+    width: 1000px;
+    border: 3px solid black;
+    border-radius: 5px;
+}
+
+.immagine-furgone {
+    width: 66%;
+    height: 330px;
+    background-size:auto;
+    background-position: center center;
+}
+
+.dettagli {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    font-size: large;
+}
+
+.id-furgone {
+    margin: 5px;
+}
+
+.stampa {
+    margin-left: 10px;
+}
+
+.rotte-eseguite{
+    font-size: large;
+    margin-top: 30px;
+    margin-left: 2px;
+}
+
+.tabella-rotte{
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 50%;
+}
+
+.tabella-rifornimenti{
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 50%;
+}
+
+.rif-eseguite{
+    font-size: large;
+    margin-top: 30px;
+    margin-left: 2px;
+
+}
+
+
+
