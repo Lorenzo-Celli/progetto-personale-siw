@@ -25,6 +25,7 @@ import it.uniroma3.siw.spring.furgoni.repository.RottaRepository;
 import it.uniroma3.siw.spring.furgoni.repository.UserRepository;
 import it.uniroma3.siw.spring.furgoni.service.CredentialsService;
 import it.uniroma3.siw.spring.furgoni.service.FurgoneService;
+import it.uniroma3.siw.spring.furgoni.service.RifornimentoService;
 import it.uniroma3.siw.spring.furgoni.service.RottaService;
 import it.uniroma3.siw.spring.furgoni.service.UserService;
 
@@ -44,6 +45,9 @@ public class RottaController {
 	
 	@Autowired
 	FurgoneService furgoneService;
+	
+	@Autowired
+	RifornimentoService rifornimentoService;
 	
 	@Autowired
 	private CredentialsService credentialsService;
@@ -144,6 +148,7 @@ public class RottaController {
 		
 		Rotta rottaDaSalvare = new Rotta();
 		
+		
 		rottaDaSalvare.setData(rotta.getData());
 		rottaDaSalvare.setFurgone(furgone);
 		rottaDaSalvare.setKmIniziali(furgone.getKmAttuali());
@@ -203,8 +208,22 @@ public class RottaController {
 		double kmFinali = rotta.getKmFinali();
 		
 		Rotta rottaDaSalvare = rottaService.findById(rotta.getId());
+		
+		if (rotta.getRifornimento().getImporto() != null) {
+			Rifornimento rifornimentoDaSalvare = rotta.getRifornimento();
+			rifornimentoDaSalvare.setRotta(rottaDaSalvare);
+			rottaDaSalvare.setRifornimento(rifornimentoDaSalvare);
+			
+			rifornimentoService.save(rifornimentoDaSalvare);
+			
+			
+		}
+		
 		rottaDaSalvare.setKmFinali(kmFinali);
 		rottaDaSalvare.getFurgone().setKmAttuali(kmFinali);
+		
+		
+		
 		rottaService.save(rottaDaSalvare);
 		
 		return "redirect:/default";

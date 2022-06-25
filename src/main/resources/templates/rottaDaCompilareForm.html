@@ -5,6 +5,7 @@
 <title>Inserisci rotta</title>
 </head>
 <body>
+	<h1>DATI DELLA ROTTA</h1>
 	<div>
 		Data: <span th:text="${rotta.data}">22/22/2022</span>
 	</div>
@@ -13,7 +14,8 @@
 	</div>
 	<div>
 		Driver della rotta: <span
-			th:text="${rotta.user.nome} + ' ' + ${rotta.user.cognome}">mario rossi</span>
+			th:text="${rotta.user.nome} + ' ' + ${rotta.user.cognome}">mario
+			rossi</span>
 	</div>
 	<div>
 		Targa del van: <span th:text="${rotta.furgone.targa}">ASDD123</span>
@@ -24,10 +26,21 @@
 	<form th:action="@{/rottaDaCompilareForm}" method="POST"
 		th:object="${rotta}">
 		<div>km finali della rotta:</div>
-		<input placeholder="inserisci i km finali della rotta"
-			th:field="*{kmFinali}"> 
-			<input type="hidden" th:field="*{id}" />
-		<button type="submit">aggiungi</button>
+		<input th:field="*{kmFinali}"> <input type="hidden"
+			th:field="*{id}" />
+
+		<h1>RIFORNIMENTO DELLA ROTTA (LASCIARE BIANCO IN CASO DI NON
+			RIFORNIMENTO)</h1>
+
+		<div>data del rifornimento: </div>
+		<input th:field="*{rifornimento.data}">
+		
+		<div>importo del rifornimento: </div>
+		<input th:field="*{rifornimento.importo}">
+
+		<div>
+			<button type="submit">aggiungi</button>
+		</div>
 	</form>
 </body>
 
