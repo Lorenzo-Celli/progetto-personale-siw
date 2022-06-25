@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.uniroma3.siw.spring.furgoni.model.Furgone;
 import it.uniroma3.siw.spring.furgoni.model.Rifornimento;
@@ -41,80 +43,56 @@ public class RottaController {
 	
 	
 	//da mettere "admin" nel apth
-	@GetMapping("/rotte")
+	@GetMapping("/admin/rotte")
 	public String getRotte(Model model) {
-		/*
-		 * CREO UN PO DI ROTTE, FURGONI, RIFORNIMENTI,ECC. PER PROVA
-		User d = this.uR.findById((long) 2).get();
 		
-		Rotta rA = new Rotta();
-		rA.setData("25/09/2020");
-		rA.setUser(d);
+//		/* CREO UN PO DI ROTTE, FURGONI, RIFORNIMENTI,ECC. PER PROVA*/
+//		User d = this.uR.findById((long) 2).get();
+//		
+//		Rotta rA = new Rotta();
+//		rA.setData("25/09/2020");
+//		rA.setUser(d);
+//		
+//		d.getRotte().add(rA);
+//		
+//		
+//		Furgone f = new Furgone();
+//		f.setTarga("EF 789DZ");
+//		f.setKmAttuali(12300.78);
+//		f.getRotte().add(rA);
+//		
+//		rA.setFurgone(f);
+//		
+//		Rifornimento rif = new Rifornimento();
+//		rif.setData("25/09/2020");
+//		rif.setFurgone(f);
+//		rif.setImporto(40.00);
+//		rif.setRotta(rA);
+//		
+//		rA.setRifornimento(rif);
+//
+//		rR.save(rA);
+//		uR.save(d);
+//		
+//		
+//		Rotta rConclusa = new Rotta();
+//		rConclusa.setUser(uR.findById((long)2).get());
+//		rConclusa.setData("30/24/2021");
+//		rConclusa.setFurgone(fR.findById((long)4).get());
+//		rConclusa.setKmIniziali(120.00);
+//		rConclusa.setKmFinali(125.00);
+//		
+//		Rifornimento rif2 = new Rifornimento();
+//		rif2.setData("25/09/2020");
+//		rif2.setFurgone(f);
+//		rif2.setImporto(40.00);
+//		rif2.setRotta(rConclusa);
+//		
+//		rConclusa.setRifornimento(rif2);
+//		
+//		rR.save(rConclusa);
 		
-		d.getRotte().add(rA);
 		
-		
-		Furgone f = new Furgone();
-		f.setTarga("EF 789DZ");
-		f.setKmAttuali(12300.78);
-		f.getRotte().add(rA);
-		
-		rA.setFurgone(f);
-		
-		Rifornimento rif = new Rifornimento();
-		rif.setData("25/09/2020");
-		rif.setFurgone(f);
-		rif.setImporto(40.00);
-		rif.setRotta(rA);
-		
-		rA.setRifornimento(rif);
-
-		rR.save(rA);
-		uR.save(d);
-		
-		
-		Rotta rConclusa = new Rotta();
-		rConclusa.setUser(uR.findById((long)2).get());
-		rConclusa.setData("30/24/2021");
-		rConclusa.setFurgone(fR.findById((long)4).get());
-		rConclusa.setKmIniziali(120.00);
-		rConclusa.setKmFinali(125.00);
-		
-		Rifornimento rif2 = new Rifornimento();
-		rif2.setData("25/09/2020");
-		rif2.setFurgone(f);
-		rif2.setImporto(40.00);
-		rif2.setRotta(rConclusa);
-		
-		rConclusa.setRifornimento(rif2);
-		
-		rR.save(rConclusa);
-		
-		*/
-		
-		/*
-		Furgone f = new Furgone();
-		f.setTarga("EW 012GH");
-		f.setKmAttuali(189220.45);
-		
-		Rifornimento rif = new Rifornimento();
-		rif.setData("15/08/1995");
-		rif.setFurgone(f);
-		rif.setImporto(35.00);
-	
-		
-		Rotta r = new Rotta();
-		r.setData("15/08/1995");
-		r.setFurgone(f);
-		r.setKmFinali(170170.00);
-		r.setKmIniziali(160160.00);
-		r.setRifornimento(rif);
-		r.setUser(this.uR.findById((long) 2).get());
-		
-		rif.setRotta(r);
-		
-		rR.save(r);
-		*/
 		
 		
 		List<Rotta> rotteCorrenti = new ArrayList<>();
@@ -138,7 +116,7 @@ public class RottaController {
 	}
 
 	//da mettere "admin" nel apth
-	@GetMapping("aggiungiRotta")
+	@RequestMapping(value="/admin/aggiungiRotta", method = RequestMethod.GET)
 	public String aggiungiRotta (Model model) {
 		
 		model.addAttribute("drivers", this.userService.getAllUsers());
@@ -147,10 +125,10 @@ public class RottaController {
 		
 		model.addAttribute("rotta", new Rotta());
 		
-		return "admin/aggiungiRottaForm";
+		return "admin/aggiungiRottaForm.html";
 	}
 	
-	@PostMapping("aggiungiRotta")
+	@PostMapping("/admin/aggiungiRotta")
 	public String aggiungiRottaPOST (@ModelAttribute("rotta") Rotta rotta) {
 
 		User driver = this.userService.getUser(rotta.getUser().getId());
@@ -166,7 +144,7 @@ public class RottaController {
 		
 		rottaService.save(rottaDaSalvare);
 		
-		return "redirect:/rotte";
+		return "redirect:/admin/rotte";
 	}
 	
 	

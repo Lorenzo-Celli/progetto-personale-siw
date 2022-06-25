@@ -1,7 +1,5 @@
 package it.uniroma3.siw.spring.furgoni.model;
 
-import java.util.Date;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,9 +17,9 @@ public class Rotta {
 		
 	private String data;
 	
-	private Double kmIniziali;
+	private double kmIniziali;
 	
-	private Double kmFinali;
+	private double kmFinali;
 
 	/**
 	 * il cascade lho messo sennò quando lo rendo persistente i dice che prima devo salvare un furgone,

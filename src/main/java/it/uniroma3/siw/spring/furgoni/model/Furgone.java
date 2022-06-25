@@ -19,7 +19,7 @@ public class Furgone {
 	
 	private String targa;
 	
-	private Double kmAttuali;
+	private double kmAttuali;
 	
 	@OneToMany
 	@JoinColumn(name = "furgone_id")

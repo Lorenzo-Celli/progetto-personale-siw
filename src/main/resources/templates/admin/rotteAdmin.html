@@ -8,7 +8,7 @@
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
     </script>
 	
-    <link rel="stylesheet" href="css/rotteAdminStyle.css">
+    <link rel="stylesheet" href="/css/rotteAdminStyle.css">
 </head>
 
 <body>
@@ -51,7 +51,6 @@
                 <td th:text="${rotta.data}">Mark</td>
                 <td th:text="${rotta.user.nome} +' ' +${rotta.user.cognome}">Otto</td>
                 <td> <a th:text="${rotta.furgone.targa}" th:href="@{dettaglioFurgone/{idF}(idF=${rotta.furgone.id})}"></a></td>
-                <td th:if="${rotta.rifornimento}" th:text="${rotta.rifornimento.id}">Otto</td>
               </tr>
             </tbody>
           </table>

@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.spring.furgoni.model.Furgone;
 import it.uniroma3.siw.spring.furgoni.service.FurgoneService;
@@ -29,6 +31,20 @@ public class FurgoneController {
 		
 		
 		return "admin/dettagliFurgone";
+	}
+	
+	@GetMapping("/admin/furgoneForm")
+	public String aggiungiFurgone (Model model) {
+		model.addAttribute("furgone", new Furgone());
+		return "/admin/furgoneForm";
+	}
+	
+	@PostMapping("/admin/furgoneForm")
+	public String aggiungiFurgonePOST (@ModelAttribute("furgone") Furgone furgone) {
+
+		furgoneService.save(furgone);
+		
+		return "redirect:/default";
 	}
 
 }
