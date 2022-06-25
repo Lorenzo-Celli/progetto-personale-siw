@@ -49,4 +49,9 @@ public class RottaService {
 		rr.delete(Rotta);
 	}
 	
+	public List<Rotta> findAllByUserId(Long userId){
+		return rr.findByUserId(userId);
+	}
+
+	
 }

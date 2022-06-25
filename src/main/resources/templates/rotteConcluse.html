@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Inserisci rotta</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+	crossorigin="anonymous">
+    </script>
+
+<link rel="stylesheet" href="/css/rotteAdminStyle.css">
+</head>
+<body>
+	<h1>ROTTE CONCLUSE</h1>
+	<div class="tabella-rotte-correnti">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Numero rotta</th>
+					<th scope="col">Km iniziali</th>
+					<th scope="col">Km finali</th>
+					<th scope="col">Targa furgone</th>
+					<th scope="col">Cod rifornimento</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="rotta: ${rotte}">
+					<th scope="row" th:text="${rotta.id}">1</th>
+					<td th:text="${rotta.kmIniziali}">Mark</td>
+					<td th:text="${rotta.kmFinali}">Mark</td>
+					<td th:text="${rotta.furgone.targa}">Mark</td>
+					<td th:if="${rotta.rifornimento != null}" th:text="${rotta.rifornimento.id}">Mark</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<hr>
+</body>
+</html>

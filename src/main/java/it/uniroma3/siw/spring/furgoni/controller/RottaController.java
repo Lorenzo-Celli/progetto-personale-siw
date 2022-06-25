@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import it.uniroma3.siw.spring.furgoni.model.Credentials;
 import it.uniroma3.siw.spring.furgoni.model.Furgone;
 import it.uniroma3.siw.spring.furgoni.model.Rifornimento;
 import it.uniroma3.siw.spring.furgoni.model.Rotta;
@@ -20,6 +23,7 @@ import it.uniroma3.siw.spring.furgoni.repository.FurgoneRepository;
 import it.uniroma3.siw.spring.furgoni.repository.RifornimentoRepository;
 import it.uniroma3.siw.spring.furgoni.repository.RottaRepository;
 import it.uniroma3.siw.spring.furgoni.repository.UserRepository;
+import it.uniroma3.siw.spring.furgoni.service.CredentialsService;
 import it.uniroma3.siw.spring.furgoni.service.FurgoneService;
 import it.uniroma3.siw.spring.furgoni.service.RottaService;
 import it.uniroma3.siw.spring.furgoni.service.UserService;
@@ -40,6 +44,9 @@ public class RottaController {
 	
 	@Autowired
 	FurgoneService furgoneService;
+	
+	@Autowired
+	private CredentialsService credentialsService;
 	
 	
 	//da mettere "admin" nel apth
@@ -145,6 +152,63 @@ public class RottaController {
 		rottaService.save(rottaDaSalvare);
 		
 		return "redirect:/admin/rotte";
+	}
+	
+
+	/*+++++++++++++++++++++++++++++++LATO USER++++++++++++++++++++++++++++++++++++++*/
+	
+	@GetMapping("/rotteConcluse")
+	public String visualizzaRotteConcluse (Model model) {
+    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		List<Rotta> rotte = rottaService.findAllByUserId(credentials.getUser().getId());
+		
+		List<Rotta> rotteConcluse = new ArrayList<>(); 
+		
+		for (Rotta rtt : rotte) {
+			if (rtt.getKmFinali() != 0.0 )
+				rotteConcluse.add(rtt);
+				
+		}
+		
+		
+		model.addAttribute("rotte", rotteConcluse);
+		return "rotteConcluse.html";
+	}
+	
+	@GetMapping("/rottaDaCompilareForm")
+	public String concludiRotta(Model model) {
+		Rotta rottaDaCompilare = new Rotta();
+		
+    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		List<Rotta> rotte = rottaService.findAllByUserId(credentials.getUser().getId());
+		
+		for (Rotta rtt : rotte) {
+			if (rtt.getKmFinali() == 0.0 ) {
+				rottaDaCompilare = rtt;
+				break;
+			}
+			
+		}
+		
+		model.addAttribute("rotta", rottaDaCompilare);
+		return "rottaDaCompilareForm.html";
+		
+	}
+	
+	@PostMapping("/rottaDaCompilareForm")
+	public String concludiRottaPost(@ModelAttribute("rotta") Rotta rotta) {
+		
+		double kmFinali = rotta.getKmFinali();
+		
+		Rotta rottaDaSalvare = rottaService.findById(rotta.getId());
+		rottaDaSalvare.setKmFinali(kmFinali);
+		rottaDaSalvare.getFurgone().setKmAttuali(kmFinali);
+		rottaService.save(rottaDaSalvare);
+		
+		return "redirect:/default";
+		
 	}
 	
 	
