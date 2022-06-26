@@ -18,7 +18,7 @@ public class FurgoneController {
 	private FurgoneService furgoneService;
 	
 	
-	@GetMapping("/dettaglioFurgone/{idFurgone}")
+	@GetMapping("admin/dettaglioFurgone/{idFurgone}")
 	public String dettaglioFurgone (@PathVariable Long idFurgone, Model model) {
 		
 		Furgone furgone = this.furgoneService.findById(idFurgone);

@@ -1,11 +1,29 @@
 body {
-    color: #000;
+    background-color: lightgreen !important;
     overflow-x: hidden;
     height: 100%;
-    background-image: url("https://i.imgur.com/GMmCQHC.png");
     background-repeat: no-repeat;
     background-size: 100% 100%
 }
+
+
+header {
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 12vh;
+    box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+}
+
+header > h1 {
+    letter-spacing: 1.5vw;
+    font-family: 'system-ui';
+    text-transform: uppercase;
+    text-align: center;
+}
+
 
 .card {
     padding: 30px 40px;
@@ -66,7 +84,7 @@ button:focus {
 
 
 .data-label{
-    margin-left: -170px;
+    margin-left: -420px;
 }
 
 .data {
@@ -74,7 +92,7 @@ button:focus {
 }
 
 .rotta-label{
-    margin-left: -280px;
+    margin-left: -350px;
 }
 
 .driver{
@@ -82,7 +100,7 @@ button:focus {
 }
 
 .driver-label{
-    margin-left: -72%;
+    margin-left: -50%;
     margin-top: 20px;
     margin-bottom: 5px;
 }
@@ -93,13 +111,14 @@ button:focus {
 }
 
 .targaVan-label{
-    margin-left: -12%;
+    margin-left: -57%;
     margin-bottom: 10px;
+    margin-top: 20px;
 }
 
 .KmIniziali-label{
     margin-top: 10px;
-    margin-left: -60%;
+    margin-left: -80%;
 }
 
 .kmIniziali{
@@ -109,7 +128,7 @@ button:focus {
 }
 
 .inserisciUtente{
-    margin-top: 5%;
+    margin-top: 5% !important;
     border: 2px solid rgb(87, 87, 87);
     border-radius: 10px;
     padding: 5%;
@@ -118,16 +137,17 @@ button:focus {
 .titolo-sez-utente {
     color: rgb(87, 87, 87);
     margin-bottom: 20px;
-    margin-top: -20px;
+    margin-top: -26px !important;
+    font-size: large;
 }
 
 .kmFinali{
     width: 30%;
-    margin-left: 15%;
+    margin-left: 0%;
 }
 
 .kmFinali-label{
-    margin-left: -70%;
+    margin-left: -90%;
 }
 
 .rifornimento{
@@ -136,9 +156,29 @@ button:focus {
 }
 
 .rifornimento-label{
-    margin-left: -50%;
+    margin-top: 20px;
+    margin-left: -86%;
 }
 .bottone-conferma{
-    margin-left: 64%;
-    margin-top: 8px;
+    margin-left: 64% !important;
+    margin-top: 8px !important;
+}
+
+
+footer {
+    height: 7vh;
+    background-color: black;
+    width: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: -5px -5px 10px rgb(0,0,0,0.3);
+    position:fixed ;
+    bottom: 0;
+}
+footer > p {
+    text-align: center;
+    font-family: 'system-ui';
+    letter-spacing: 3px;
 }

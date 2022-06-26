@@ -1,63 +1,102 @@
-.container-card{
+body {
+	background-color: lightgreen;
+}
+
+header {
+    background-color: black;
+    color: white;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    position: absolute;
-    left: 20%;
-    padding: 10px;
-    padding-bottom: 50px;
-    width: 1000px;
-    border: 3px solid black;
-    border-radius: 5px;
+    justify-content: center;
+    height: 12vh;
+    box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+}
+
+header > h1 {
+    letter-spacing: 1.5vw;
+    font-family: 'system-ui';
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.container-card {
+    margin-top: 50px;
+    margin-bottom: 100px;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-left: 20%;
+	padding: 10px;
+	padding-bottom: 50px;
+	width: 1000px;
+	border: 3px solid black;
+	border-radius: 10px;
+    box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+
 }
 
 .immagine-furgone {
-    width: 66%;
-    height: 330px;
-    background-size:auto;
-    background-position: center center;
+	width: 66%;
+	height: 330px;
+	background-size: auto;
+	background-position: center center;
 }
 
 .dettagli {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    font-size: large;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 100%;
+	font-size: large;
 }
 
 .id-furgone {
-    margin: 5px;
+	margin: 5px;
 }
 
 .stampa {
-    margin-left: 10px;
+	margin-left: 10px;
 }
 
-.rotte-eseguite{
-    font-size: large;
-    margin-top: 30px;
-    margin-left: 2px;
+.rotte-eseguite {
+	font-size: large;
+	margin-top: 30px;
+	margin-left: 2px;
 }
 
-.tabella-rotte{
-    border: 1px solid black;
-    border-radius: 5px;
-    width: 50%;
+.tabella-rotte {
+	border: 1px solid black;
+	border-radius: 5px;
+	width: 50%;
 }
 
-.tabella-rifornimenti{
-    border: 1px solid black;
-    border-radius: 5px;
-    width: 50%;
+.tabella-rifornimenti {
+	border: 1px solid black;
+	border-radius: 5px;
+	width: 50%;
 }
 
-.rif-eseguite{
-    font-size: large;
-    margin-top: 30px;
-    margin-left: 2px;
-
+.rif-eseguite {
+	font-size: large;
+	margin-top: 30px;
+	margin-left: 2px;
 }
 
-
-
+footer {
+    height: 7vh;
+    background-color: black;
+    width: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: -5px -5px 10px rgb(0,0,0,0.3);
+    position: fixed;
+    bottom: 0;
+}
+footer > p {
+    text-align: center;
+    font-family: 'system-ui';
+    letter-spacing: 3px;
+}
