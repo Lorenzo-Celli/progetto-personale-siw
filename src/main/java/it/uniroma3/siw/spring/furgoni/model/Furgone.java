@@ -3,6 +3,7 @@ package it.uniroma3.siw.spring.furgoni.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,11 +22,12 @@ public class Furgone {
 	
 	private double kmAttuali;
 	
-	@OneToMany
-	@JoinColumn(name = "furgone_id")
+	
+	@OneToMany(cascade = CascadeType.REMOVE) //non ha senso pensare ad una rotta se non vi è associato nessun furgone
+	@JoinColumn(name = "furgone_id") 
 	private List<Rotta> rotte;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.REMOVE) //non ha senso pensare ad un rifornimento se non vi è associato nessun furgone
 	@JoinColumn(name = "furgone_id")
 	private List<Rifornimento> rifornimenti;
 	
