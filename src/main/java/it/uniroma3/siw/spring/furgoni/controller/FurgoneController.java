@@ -40,11 +40,49 @@ public class FurgoneController {
 	}
 	
 	@PostMapping("/admin/furgoneForm")
-	public String aggiungiFurgonePOST (@ModelAttribute("furgone") Furgone furgone) {
-
+	public String aggiungiFurgonePOST (@ModelAttribute("furgone") Furgone furgone, Model model) {
+		
+		if (furgone.getId() != null) {
+		Furgone furgoneAttuale = furgoneService.findById(furgone.getId());
+		
+		furgoneAttuale.setKmAttuali(furgone.getKmAttuali());
+		furgoneAttuale.setTarga(furgone.getTarga());
+		
+		furgoneService.save(furgoneAttuale);
+		
+		return "redirect:/default";
+		}
+		
 		furgoneService.save(furgone);
 		
 		return "redirect:/default";
+	}
+	
+	@GetMapping("/admin/furgoni")
+	public String visualizzaFurgoni(Model model) {
+		
+		model.addAttribute("furgoni", furgoneService.findAll());
+		
+		return "/admin/furgoni.html";
+	}
+	
+	
+	@GetMapping("/admin/editFurgone/{idF}")
+	public String editFurogne(@PathVariable("idF") Long id, Model model) {
+		
+		model.addAttribute("furgone", furgoneService.findById(id));
+		
+		return "/admin/furgoneForm.html";
+	}
+	
+	@GetMapping("/admin/deleteFurgone/{idF}")
+	public String deleteFurogne(@PathVariable("idF") Long id, Model model) {
+		
+		furgoneService.delete(furgoneService.findById(id));
+		
+		model.addAttribute("furgoni", furgoneService.findAll());
+		
+		return "/admin/furgoni.html";
 	}
 
 }

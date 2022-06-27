@@ -234,8 +234,11 @@ public class RottaController {
 		Rotta rottaDaSalvare = rottaService.findById(rotta.getId());
 		
 		if (rotta.getRifornimento().getImporto() != null) {
+			
 			Rifornimento rifornimentoDaSalvare = rotta.getRifornimento();
+			
 			rifornimentoDaSalvare.setRotta(rottaDaSalvare);
+			rifornimentoDaSalvare.setFurgone(rottaDaSalvare.getFurgone());
 			rottaDaSalvare.setRifornimento(rifornimentoDaSalvare);
 			
 			rifornimentoService.save(rifornimentoDaSalvare);
