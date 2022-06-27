@@ -1,5 +1,4 @@
 
-
 body {
 	text-align:center;
 	background-color: lightgreen;
@@ -23,83 +22,88 @@ header > h1 {
 }
 
 
-.sezione-personale{
-	margin-top: 50px;
+.container-general{
 	display: flex;
 	flex-direction: column;
-	width: 80%;
-	height: 300px;
+	width: 60%;
+	position: relative;
+	left: 20%;
+	height: 800px;
 	border: 2px solid black;
 	border-radius: 15px;
 	box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
-	position: relative;
-	left: 10%;
-	padding: 20px;
-	background-color: white;
+	padding: 40px;
+
+	margin-top: 50px;
 }
 
-.titolo {
-	margin-top: 10px;
+.titolo{
+	position: relative;
+	left: 0%;
 	font-size: xx-large;
 	letter-spacing: 0.4vw;
     text-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+	margin-bottom: 50px;
 }
 
-.rotta-odierna{
+.dati{
 	display: flex;
+	margin-bottom: 20px;
+}
+
+.intestazione{
+	width: 200px;
+}
+
+.intestazione-form{
+	margin-bottom: 10px;
+	width: 300px;
+}
+
+.rifornimento{
+	display: flex;
+	flex-direction: column;
 	align-items: center;
-	width: 100%;
-	margin-top: 40px;
+	margin-top: 50px;
+	width: 1040px;
+	height: 230px;
+	border: 2px solid black;
+	border-radius: 15px;
+	padding: 30px;
 }
 
-.rotta-odierna > .bottone-compila{
-	margin-left: 100px;
-	width: 10%;
+.titolo-rif{
+	font-size: large;
+	letter-spacing: 0.2vw;
 }
 
-.bottone-compila{
-	margin-left: 50px;
-	width: 10%;
+.intestazione-2{
+	margin-top: 20px;
+	position: relative;
+	left: -35%;
+}
+
+.valore-2{
+	position: relative;
+	left: -35%;
 }
 
 .btn-success{
 	width: 100%;
-	height: 100%;
 	text-transform: uppercase;
-	color: white;
+	font-weight: bold;
 }
 
-.rotta-totali{
-	display: flex;
-	align-items: center;
-	width: 100%;
-	margin-top: 40px;
+.bottone-aggiungi{
+	position: absolute;
+	right: 30px;
+	top: 730px;
+	width: 200px;
+
 }
 
-.sezione-finale{
-	margin-top: 30px;
-    display: flex;
-    width: 93%;
-    border: 2px solid transparent;
-    border-radius: 15px;
-    box-shadow: 5px 5px 10px transparent(0, 0, 0, 0.3);
-}
-
-
-.logout{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100px;
-    height: 50px;
-    background-color: red;
-    box-shadow: 5px 5px 10px rgb(255, 106, 106);
-    text-transform: uppercase;
-    border-radius: 10px;
-
-    position: relative;
-    left: 90%;
-    top: 90%;
+.kmFinali{
+	margin-left: -70%;
 }
 
 footer {
@@ -118,4 +122,8 @@ footer > p {
     text-align: center;
     font-family: 'system-ui';
     letter-spacing: 3px;
+}
+
+.spazio{
+	height: 200px;
 }

@@ -1,20 +1,40 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<link rel="stylesheet" href="/css/home.css">
 <meta charset="UTF-8" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<link rel="stylesheet" href="css/home.css">
 <title>SIW FURGONI</title>
 </head>
 <body>
 
+  <header>
+		<h1>SIW FURGONI</h1>
+	</header>
 
-    	<h1>PAGINA PRINCIPALE DI PROVA DELLO USER</h1>
-		<div>
-			<p><a th:href="@{/rottaDaCompilareForm}">compila rotta odierna</a></p>
-			<p><a th:href="@{/rotteConcluse}">visualizza rotte concluse</a></p>
-			<p><a th:href="@{/default}">HOME</a></p>
-			<p><a th:href="@{/logout}">Logout</a></p>
-   		</div>
+
+
+  <div class="sezione-personale">
+    <div class="titolo"><b>Sezione Personale</b></div>
+    <div class="rotta-odierna">
+      <h4>Compila rotta odierna (se presente)</h4>
+      <div class="bottone-compila"><a class="btn btn-success" th:href="@{/rottaDaCompilareForm}" role="button"><b>compila</b></a></div>
+    </div>
+    <div class="rotta-totali">
+      <h4>Visualizza tutte le rotte che hai concluso</h4>
+      <div class="bottone-compila"><a class="btn btn-info" th:href="@{/rotteConcluse}" role="button"><b>visualizza rotte</b></a></div>
+    </div>
+  </div>
+
+  <div class="sezione-finale">
+    <div class="logout"><b><a th:href="@{/logout}">Logout</a></b></div>
+</div>
+
+
+<footer>
+  <p>Realizzato da Lorenzo Celli, Gianluca Marini, Francesco Martini</p>
+</footer>
    		
 
 </body>

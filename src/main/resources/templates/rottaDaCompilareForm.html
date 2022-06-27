@@ -3,45 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <title>Inserisci rotta</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<link rel="stylesheet" href="css/rottaDaCompilareFormStyle.css">
+
 </head>
 <body>
-	<h1>DATI DELLA ROTTA</h1>
-	<div>
-		Data: <span th:text="${rotta.data}">22/22/2022</span>
-	</div>
-	<div>
-		Numero Rotta: <span th:text="${rotta.id}">1</span>
-	</div>
-	<div>
-		Driver della rotta: <span
-			th:text="${rotta.user.nome} + ' ' + ${rotta.user.cognome}">mario
-			rossi</span>
-	</div>
-	<div>
-		Targa del van: <span th:text="${rotta.furgone.targa}">ASDD123</span>
-	</div>
-	<div>
-		Km iniziali della rotta: <span th:text="${rotta.kmIniziali}">22</span>
-	</div>
-	<form th:action="@{/rottaDaCompilareForm}" method="POST"
-		th:object="${rotta}">
-		<div>km finali della rotta:</div>
-		<input th:field="*{kmFinali}"> <input type="hidden"
-			th:field="*{id}" />
 
-		<h1>RIFORNIMENTO DELLA ROTTA (LASCIARE BIANCO IN CASO DI NON
-			RIFORNIMENTO)</h1>
+  <header>
+		<h1>SIW FURGONI</h1>
+	</header>
 
-		<div>data del rifornimento: </div>
-		<input th:field="*{rifornimento.data}">
-		
-		<div>importo del rifornimento: </div>
-		<input th:field="*{rifornimento.importo}">
+  <div class="container-general">
+    <div class="titolo"><b>Dati della rotta</b></div>
+    <div class="dati">
+      <div class="intestazione" ><b>Data:</b></div>
+      <div class="valore" th:text="${rotta.data}" >valore</div>
+    </div>
+    <div class="dati">
+      <div class="intestazione"><b>Numero rotta:</b></div>
+      <div class="valore" th:text="${rotta.id}" >valore</div>
+    </div>
+    <div class="dati">
+      <div class="intestazione"><b>Driver:</b></div>
+      <div class="valore" 	th:text="${rotta.user.nome} + ' ' + ${rotta.user.cognome}">valore</div>
+    </div>
+    <div class="dati">
+      <div class="intestazione"><b>Targa del Van:</b></div>
+      <div class="valore" th:text="${rotta.furgone.targa}">valore</div>
+    </div>
+    <div class="dati">
+      <div class="intestazione"><b>Km iniziali:</b></div>
+      <div class="valore" th:text="${rotta.kmIniziali}">valore</div>
+    </div>
+    <div class="dati">
+      <form th:action="@{/rottaDaCompilareForm}" method="POST"
+      th:object="${rotta}">
+      <div class="intestazione-form"><b>Km finali: (da inserire)</b></div>
+      <div class="valore" >
+        <input class="kmFinali" th:field="*{kmFinali}"> <input type="hidden" th:field="*{id}" />
+      </div>
 
-		<div>
-			<button type="submit">aggiungi</button>
+
+      <div class="rifornimento">
+        <div class="titolo-rif">Da inserire solo se è stata effettuato un rifornimento</div>
+
+        <div class="intestazione-2"><b>Data del rifornimento:</b> </div>
+        <input class="valore-2" th:field="*{rifornimento.data}">
+
+        <div class="intestazione-2"><b>importo del rifornimento:</b> </div>
+		    <input class="valore-2" th:field="*{rifornimento.importo}">
+
+
+    <div class="bottone-aggiungi">
+			<button class="btn btn-success" type="submit">aggiungi</button>
 		</div>
-	</form>
+
+
+      </div>
+
+    </form>
+    </div>
+
+  </div>
+
+
+  <div class="spazio"></div>
+
+  <footer>
+    <p>Realizzato da Lorenzo Celli, Gianluca Marini, Francesco Martini</p>
+  </footer>
+
 </body>
 
 </html>
