@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Inserisci rotta</title>
-<link rel="stylesheet" href="../css/aggiungiRottaFormStyle.css">
+<link rel="stylesheet" href="/css/aggiungiRottaFormStyle.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -91,6 +91,7 @@
 									onblur="validate(6)">
 							</div>
 						</div>
+						<input type="hidden" th:field="*{id}" />
 						<div class="row justify-content-end bottone-conferma">
 							<div class="form-group col-sm-6 ">
 								<button type="submit" class="btn btn-success">Crea la

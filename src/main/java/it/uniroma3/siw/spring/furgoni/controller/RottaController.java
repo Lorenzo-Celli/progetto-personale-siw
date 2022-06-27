@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -148,6 +149,7 @@ public class RottaController {
 		
 		Rotta rottaDaSalvare = new Rotta();
 		
+		if (rotta.getId() != null) rottaDaSalvare = rottaService.findById(rotta.getId());
 		
 		rottaDaSalvare.setData(rotta.getData());
 		rottaDaSalvare.setFurgone(furgone);
@@ -159,6 +161,23 @@ public class RottaController {
 		return "redirect:/admin/rotte";
 	}
 	
+	@GetMapping("/admin/editRotta/{idR}")
+	public String editRotta (@PathVariable("idR") Long idRotta, Model model) {
+				
+		model.addAttribute("rotta", rottaService.findById(idRotta));
+		model.addAttribute("drivers", this.userService.getAllUsers());
+		model.addAttribute("furgoni", this.furgoneService.findAll());
+		
+		return "admin/aggiungiRottaForm.html";
+	}
+	
+	@GetMapping("/admin/deleteRotta/{idR}")
+	public String deleteRotta (@PathVariable("idR") Long idRotta, Model model) {
+				
+		rottaService.delete(rottaService.findById(idRotta));
+		
+		return "redirect:/admin/rotte";
+	}
 
 	/*+++++++++++++++++++++++++++++++LATO USER++++++++++++++++++++++++++++++++++++++*/
 	
