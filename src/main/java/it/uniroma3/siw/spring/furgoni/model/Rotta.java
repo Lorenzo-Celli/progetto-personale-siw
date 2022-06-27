@@ -30,7 +30,7 @@ public class Rotta {
 	private Furgone furgone;
 	
 	// Stesso ragionamento
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Rifornimento rifornimento;
 	
 	@ManyToOne
