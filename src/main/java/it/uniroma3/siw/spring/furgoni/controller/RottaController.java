@@ -111,7 +111,7 @@ public class RottaController {
 		List<Rotta> rotteConcluse = new ArrayList<>();
 		
 		for (Rotta rtt : rottaService.findAll()) {
-			if (rtt.getKmFinali() == null ) {
+			if (rtt.getKmFinali() == 0 ) {
 				rotteCorrenti.add(rtt);
 			} else {
 				rotteConcluse.add(rtt);
@@ -183,6 +183,7 @@ public class RottaController {
 	
 	@GetMapping("/rottaDaCompilareForm")
 	public String concludiRotta(Model model) {
+		
 		Rotta rottaDaCompilare = new Rotta();
 		
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -195,6 +196,10 @@ public class RottaController {
 				break;
 			}
 			
+		}		
+		
+		if (rottaDaCompilare.getFurgone() == null) {
+			return "nessunaRotta.html";
 		}
 		
 		model.addAttribute("rotta", rottaDaCompilare);
@@ -204,7 +209,7 @@ public class RottaController {
 	
 	@PostMapping("/rottaDaCompilareForm")
 	public String concludiRottaPost(@ModelAttribute("rotta") Rotta rotta) {
-		
+				
 		double kmFinali = rotta.getKmFinali();
 		
 		Rotta rottaDaSalvare = rottaService.findById(rotta.getId());
