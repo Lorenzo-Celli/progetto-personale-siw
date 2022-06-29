@@ -1,0 +1,61 @@
+body {
+    background-color: lightgreen;
+}
+
+header {
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 12vh;
+    box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+}
+header > h1 {
+    letter-spacing: 1.5vw;
+    font-family: 'system-ui';
+    text-transform: uppercase;
+    text-align: center;
+}
+
+
+h2 {
+    position: relative;
+    left: 30%;
+    letter-spacing: 0.3vw;
+}
+
+.titolo-1{
+    margin-top: 50px;
+}
+
+
+.tabella-driver{
+    margin-top: 20px;
+    width: 1000px;
+    position: relative;
+    left: 20%;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-bottom: 50px;
+}
+
+
+
+footer {
+    height: 7vh;
+    background-color: black;
+    width: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: -5px -5px 10px rgb(0,0,0,0.3);
+    position: fixed;
+    bottom: 0;
+}
+footer > p {
+    text-align: center;
+    font-family: 'system-ui';
+    letter-spacing: 3px;
+}

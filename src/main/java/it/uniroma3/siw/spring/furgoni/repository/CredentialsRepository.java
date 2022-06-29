@@ -9,5 +9,7 @@ import it.uniroma3.siw.spring.furgoni.model.Credentials;
 public interface CredentialsRepository extends CrudRepository<Credentials, Long> {
 	
 	public Optional<Credentials> findByUsername(String username);
+	
+	public Credentials findByUser_id(Long user_id);
 
 }

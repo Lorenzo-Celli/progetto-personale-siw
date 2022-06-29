@@ -15,30 +15,30 @@ import it.uniroma3.siw.spring.furgoni.repository.RottaRepository;
 
 @Service
 public class RottaService {
-	
+
 	@Autowired
-	private RottaRepository rr;
+	private RottaRepository rottaRepository;
 
 	@Transactional
 	public void save(Rotta r) {
-		rr.save(r);
+		rottaRepository.save(r);
 	}
-	
+
 	public boolean exist(Rotta Rotta) {
-		for (Rotta r : rr.findAll()) {
+		for (Rotta r : rottaRepository.findAll()) {
 			if (r.equals(Rotta)) 
 				return true;
 		}
 		return false;
 	}
-	
+
 	public Rotta findById(Long id) {
-		return rr.findById(id).get();
+		return rottaRepository.findById(id).get();
 	}
 
 	public List<Rotta> findAll(){
 		List<Rotta> Rottas = new ArrayList<>();
-		for (Rotta r : rr.findAll()) {
+		for (Rotta r : rottaRepository.findAll()) {
 			Rottas.add(r);
 		}
 		return Rottas;
@@ -46,12 +46,49 @@ public class RottaService {
 
 	@Transactional
 	public void delete(Rotta Rotta) {
-		rr.delete(Rotta);
-	}
-	
-	public List<Rotta> findAllByUserId(Long userId){
-		return rr.findByUserId(userId);
+		rottaRepository.delete(Rotta);
 	}
 
+	public List<Rotta> findAllByUserId(Long userId){
+		return rottaRepository.findByUserId(userId);
+	}
+
+	public Rotta findByDataAndUserId(String data ,Long userId){
+		return rottaRepository.findByDataAndUserId(data, userId);
+	}
 	
+	public Rotta findByDataAndFurgoneId(String data ,Long furgoneId){
+		return rottaRepository.findByDataAndFurgoneId(data, furgoneId);
+	}
+
+	/*ef c = chefRepository.findByNomeAndCognome(chef.getNome(), chef.getCognome());
+
+		if (c != null)
+			return true;
+		else 
+			return false;*/
+
+	public boolean alreadyExists(Rotta rotta) {
+		Rotta rottaDaControllare =
+				rottaRepository.findByDataAndUserId(rotta.getData(), rotta.getUser().getId());
+		if(rottaDaControllare!=null)
+			return true;
+		else 
+			return false;
+
+	}
+
+	public boolean alreadyTake(Rotta rotta) {
+		Rotta rottaDaControllare =rottaRepository.findByDataAndFurgoneId(rotta.getData(), rotta.getFurgone().getId());
+
+		if(rotta.furgoneGiaPreso(rottaDaControllare))
+			return true;
+		return false;
+
+	}
+
+
+
+
+
 }

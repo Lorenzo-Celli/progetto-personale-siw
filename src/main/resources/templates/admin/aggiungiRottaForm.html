@@ -11,12 +11,13 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
 	crossorigin="anonymous">
-    </script>
+	
+</script>
 </head>
 
 <body>
 
-    <header>
+	<header>
 		<h1>SIW FURGONI</h1>
 	</header>
 
@@ -25,8 +26,11 @@
 			<div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
 				<div class="card">
 					<h3 class="text-center mb-4">Inserisci la rotta giornaliera</h3>
-					<form class="form-card" th:action="@{/admin/aggiungiRotta}" method="POST"
-						th:object="${rotta}">
+					<form class="form-card" th:action="@{/admin/aggiungiRotta}"
+						method="POST" th:object="${rotta}">
+						<div th:if="${#fields.hasGlobalErrors()}">
+							<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+						</div>
 						<div class="row justify-content-between text-left ">
 							<div class="form-group col-sm-6 flex-column d-flex data">
 								<label class="form-control-label px-3 data-label">Data<span
@@ -34,29 +38,27 @@
 									th:field="*{data}" id="fname" name="fname"
 									placeholder="Inserisci data rotta" onblur="validate(1)">
 							</div>
-							<div class="form-group col-sm-6 flex-column d-flex">
-								<label class="form-control-label px-3 rotta-label">Numero
-									rotta<span class="text-danger"> *</span>
-								</label> <input disabled type="text" id="lname" name="lname"
-									placeholder="Verrà generato automaticamente"
-									onblur="validate(2)">
+							<div class="form-group col-sm-6 flex-column d-flex data">
+								<label class="form-control-label px-3 data-label">Data<span
+									class="text-danger"> *</span></label> <input type="text"
+									th:field="*{codiceRotta}" id="fname" name="fname"
+									placeholder="Inserisci il codice della rotta" onblur="validate(1)">
 							</div>
 						</div>
 						<div class="row justify-content-between text-left">
-							<div class="form-group col-sm-6 flex-column d-flex driver"
-								>
+							<div class="form-group col-sm-6 flex-column d-flex driver">
 								<label class="form-control-label px-3 driver-label">Seleziona
 									il driver per la rotta<span class="text-danger"> *</span>
 								</label> <select th:field="*{user.id}" class="form-select"
 									aria-label="Default select example">
 									<option th:each="d : ${drivers}" th:value="${d.id}"
 										th:text="${d.nome} +' ' +${d.cognome}"></option>
-								</select>
+								</select> 
+
 							</div>
 						</div>
 						<div class="row justify-content-between text-left">
-							<div class="form-group col-sm-6 flex-column d-flex targaVan"
-								>
+							<div class="form-group col-sm-6 flex-column d-flex targaVan">
 								<label class="form-control-label px-3 targaVan-label">Seleziona
 									la targa del van<span class="text-danger"> *</span>
 								</label> <select th:field="*{furgone.id}" class="form-select"
@@ -68,8 +70,8 @@
 							<div class="form-group col-sm-6 flex-column d-flex kmIniziali">
 								<label class="form-control-label px-3 KmIniziali-label">Km
 									iniziali<span class="text-danger"> *</span>
-								</label> <input disabled type="text" id="fname"
-									name="fname" placeholder="Km attuali del furgone utilizzato"
+								</label> <input disabled type="text" id="fname" name="fname"
+									placeholder="Km attuali del furgone utilizzato"
 									onblur="validate(1)">
 							</div>
 						</div>
@@ -80,15 +82,13 @@
 								<label class="form-control-label px-3 kmFinali-label">Km
 									finali<span class="text-danger"> </span>
 								</label> <input disabled type="text" id="ans" name="ans"
-									placeholder="inserimento utente"
-									onblur="validate(6)">
+									placeholder="inserimento utente" onblur="validate(6)">
 							</div>
 							<div class="form-group col-12 flex-column d-flex rifornimento">
 								<label class="form-control-label px-3 rifornimento-label">Rifornimento
 									€<span class="text-danger"> </span>
 								</label> <input disabled type="text" id="ans" name="ans"
-									placeholder="inserimento utente"
-									onblur="validate(6)">
+									placeholder="inserimento utente" onblur="validate(6)">
 							</div>
 						</div>
 						<input type="hidden" th:field="*{id}" />
@@ -105,9 +105,9 @@
 	</div>
 
 
-    <footer>
-        <p>Realizzato da Lorenzo Celli, Gianluca Marini, Francesco Martini</p>
-    </footer>
+	<footer>
+		<p>Realizzato da Lorenzo Celli, Gianluca Marini, Francesco Martini</p>
+	</footer>
 
 </body>
 

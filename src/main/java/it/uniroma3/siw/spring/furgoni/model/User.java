@@ -50,6 +50,10 @@ public class User {
 	public void setCredenziali(Credentials credenziali) {
 		this.credenziali = credenziali;
 	}
+	
+	public boolean isDriver() {
+		return this.getCredenziali().getRole().equals(Credentials.DEFAULT_ROLE);
+	}
 
 	public Long getId() {
 		return id;

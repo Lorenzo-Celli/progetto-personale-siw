@@ -7,44 +7,72 @@
 </head>
 <body>
 
-    <header>
+	<header>
 		<h1>SIW FURGONI</h1>
 	</header>
 
 
-    <div class="contenitore">
-        <div class="sezione-rotte">
-            <h2>Gestisci Rotte</h2>
-            <p><a th:href="@{/admin/rotte}"><b>Visualizza tutte le Rotte</b></a></p>
-            <p><a th:href="@{/admin/aggiungiRotta}"><b>Aggiungi una nuova Rotta</b></a></p>
-        </div>
+	<div class="contenitore">
+		<div class="sezione-rotte">
+			<h2>Gestisci Rotte</h2>
+			<p>
+				<a th:href="@{/admin/rotte}"><b>Visualizza tutte le Rotte</b></a>
+			</p>
+			<p>
+				<a th:href="@{/admin/aggiungiRotta}"><b>Aggiungi una nuova
+						Rotta</b></a>
+			</p>
+		</div>
 
-        <div class="sezione-furgoni">
-            <h2>Gestisci Furgoni</h2>
-            <p><a th:href="@{/admin/furgoni}"><b>Visualizza la lista dei furgoni</b></a></p>
-            <p><a th:href="@{/admin/furgoneForm}"><b>Aggiungi nuovo Furgone al sistema</b></a></p>
-        </div>
-    </div>
+		<div class="sezione-furgoni">
+			<h2>Gestisci Furgoni</h2>
+			<p>
+				<a th:href="@{/admin/furgoni}"><b>Visualizza la lista dei
+						furgoni</b></a>
+			</p>
+			<p>
+				<a th:href="@{/admin/furgoneForm}"><b>Aggiungi nuovo Furgone
+						al sistema</b></a>
+			</p>
+		</div>
+	</div>
 
 
-        <div class="contenitore">
+	<div class="contenitore">
 
-            <div class="sezione-rif">
-                <h2 >Gestisci Rifornimenti</h2>
-                <p><a th:href="@{/admin/rifornimenti}"><b>Visualizza la lista dei Rifornimenti</b></a></p>
+		<div class="sezione-rif">
+			<h2>Gestisci Rifornimenti</h2>
+			<p>
+				<a th:href="@{/admin/rifornimenti}"><b>Visualizza la lista
+						dei Rifornimenti</b></a>
+			</p>
+
+		</div>
+		<div class="sezione-driver">
+			<h2>Gestisci Driver</h2>
+			<p>
+				<a th:href="@{/admin/driver}"><b>Visualizza la lista dei
+						Driver</b></a>
+			</p>
+			<p>
+				<a th:href="@{/register}"><b>Aggiungi nuovo Driver al
+						sistema</b></a>
+			</p>
+		</div>
 
 
-            </div>
+	</div>
 
-            <div class="sezione-finale">
-                <div class="logout"><b><a th:href="@{/logout}">Logout</a></b></div>
-            </div>
+	<div class="sezione-finale">
+		<div class="logout">
+			<b><a th:href="@{/logout}">Logout</a></b>
+		</div>
+	</div>
 
-        </div>
-   		
 
-           <footer>
-            <p>Realizzato da Lorenzo Celli, Gianluca Marini, Francesco Martini</p>
-        </footer>
+
+	
+
+
 </body>
 </html>

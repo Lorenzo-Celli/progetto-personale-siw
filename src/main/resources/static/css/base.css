@@ -1,0 +1,19 @@
+header {
+    background: no-repeat left/cover url(/images/myjob.jpg);
+    display: flex;
+    height: 250px;
+    min-width: 250px;
+    align-items: center;
+    text-shadow: #000 0 0 .2em;
+    
+}
+
+
+
+footer {
+	
+    border-top-style: outset;
+    margin-top: 2em;
+    background-color: grey;
+
+	}

@@ -50,6 +50,7 @@ header > h1 {
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
+
 h2 {
     position: relative;
     left: 30%;
@@ -115,6 +116,7 @@ footer {
     box-shadow: -5px -5px 10px rgb(0,0,0,0.3);
     position: absolute;
     bottom: 0;
+    
 }
 footer > p {
     text-align: center;

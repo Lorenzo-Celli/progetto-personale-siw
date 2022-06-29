@@ -15,12 +15,17 @@ import it.uniroma3.siw.spring.controller.validator.UserValidator;
 import it.uniroma3.siw.spring.furgoni.model.Credentials;
 import it.uniroma3.siw.spring.furgoni.model.User;
 import it.uniroma3.siw.spring.furgoni.service.CredentialsService;
+import it.uniroma3.siw.spring.furgoni.service.UserService;
 
 @Controller
 public class AuthenticationController {
 	
 	@Autowired
 	private CredentialsService credentialsService;
+	
+
+	@Autowired
+	private UserService userService;
 	
 	@Autowired
 	private UserValidator userValidator;
@@ -73,6 +78,9 @@ public class AuthenticationController {
             // this also stores the User, thanks to Cascade.ALL policy
             credentials.setUser(user);
             credentialsService.saveCredentials(credentials);
+            User u = this.userService.findByNomeAndCognome(user.getNome(), user.getCognome());
+            u.setCredenziali(this.credentialsService.getCredentials(credentials.getUsername()));
+            this.userService.saveUser(u);
             return "registrationSuccessful";
         }
         return "registerUser";

@@ -10,15 +10,17 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Rotta {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-		
+
 	private String data;
 	
+	private String codiceRotta;
+
 	private double kmIniziali;
-	
+
 	private double kmFinali;
 
 	/**
@@ -28,11 +30,11 @@ public class Rotta {
 	 */
 	@ManyToOne(cascade = CascadeType.PERSIST) 
 	private Furgone furgone;
-	
+
 	// Stesso ragionamento
 	@OneToOne(cascade = CascadeType.ALL)
 	private Rifornimento rifornimento;
-	
+
 	@ManyToOne
 	private User user;
 
@@ -76,7 +78,7 @@ public class Rotta {
 	public void setFurgone(Furgone furgone) {
 		this.furgone = furgone;
 	}
-	
+
 	public User getUser() {
 		return user;
 	}
@@ -91,6 +93,31 @@ public class Rotta {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-	
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == null || this.getClass()!= obj.getClass())
+			return false;
+		Rotta that = (Rotta)obj;
+		if(this.getData().equals(that.getData()) && this.getUser().getId() == that.getUser().getId())
+			return true;
+		return false;
+
+	}
+
+	public boolean furgoneGiaPreso(Rotta rotta) {
+		if(rotta!=null)
+			if(this.getFurgone().getTarga().equals(rotta.getFurgone().getTarga()))
+				return true;
+		return false;
+	}
+
+	public String getCodiceRotta() {
+		return codiceRotta;
+	}
+
+	public void setCodiceRotta(String codiceRotta) {
+		this.codiceRotta = codiceRotta;
+	}
+
 }

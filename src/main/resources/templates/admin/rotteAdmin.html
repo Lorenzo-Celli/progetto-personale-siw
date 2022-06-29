@@ -27,14 +27,14 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th scope="col">Numero rotta</th>
+					<th scope="col">Codice rotta</th>
 					<th scope="col">Driver assegnato</th>
 					<th scope="col">Targa furgone</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="rotta: ${rotteCorrenti}">
-					<th scope="row" th:text="${rotta.id}">1</th>
+					<td th:text="${rotta.codiceRotta}">1</td>
 					<td th:text="${rotta.user.nome} +' ' +${rotta.user.cognome}">Mark</td>
 					<td><a th:text="${rotta.furgone.targa}"
 						th:href="@{dettaglioFurgone/{idF}(idF=${rotta.furgone.id})}"></a></td>
@@ -53,7 +53,7 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th scope="col">Numero rotta</th>
+					<th scope="col">Codice rotta</th>
 					<th scope="col">Data</th>
 					<th scope="col">Driver</th>
 					<th scope="col">Targa furgone</th>
@@ -63,7 +63,7 @@
 			</thead>
 			<tbody>
 				<tr th:each="rotta: ${rotteConcluse}">
-					<th scope="row" th:text="${rotta.id}">1</th>
+					<th scope="row" th:text="${rotta.codiceRotta}">1</th>
 					<td th:text="${rotta.data}">Mark</td>
 					<td th:text="${rotta.user.nome} +' ' +${rotta.user.cognome}">Otto</td>
 					<td><a th:text="${rotta.furgone.targa}"
@@ -82,6 +82,7 @@
 
 	<footer>
 		<p>Realizzato da Lorenzo Celli, Gianluca Marini, Francesco Martini</p>
+		<a th:href="@{${home}}">HOME</a>
 	</footer>
 
 </body>
